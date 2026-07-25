@@ -1,0 +1,23 @@
+{
+"type": "FeatureCollection",
+"name": "source_zones",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32643" } },
+"features": [
+{ "type": "Feature", "properties": { "tract_id": "T00", "population": 7194 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 502500.0, 1000000.0 ], [ 502500.0, 1002500.0 ], [ 500000.0, 1002500.0 ], [ 500000.0, 1000000.0 ], [ 502500.0, 1000000.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T01", "population": 6498 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 505000.0, 1000000.0 ], [ 505000.0, 1002500.0 ], [ 502500.0, 1002500.0 ], [ 502500.0, 1000000.0 ], [ 505000.0, 1000000.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T02", "population": 2862 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 507500.0, 1000000.0 ], [ 507500.0, 1002500.0 ], [ 505000.0, 1002500.0 ], [ 505000.0, 1000000.0 ], [ 507500.0, 1000000.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T03", "population": 313 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 510000.0, 1000000.0 ], [ 510000.0, 1002500.0 ], [ 507500.0, 1002500.0 ], [ 507500.0, 1000000.0 ], [ 510000.0, 1000000.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T04", "population": 6966 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 502500.0, 1002500.0 ], [ 502500.0, 1005000.0 ], [ 500000.0, 1005000.0 ], [ 500000.0, 1002500.0 ], [ 502500.0, 1002500.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T05", "population": 5853 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 505000.0, 1002500.0 ], [ 505000.0, 1005000.0 ], [ 502500.0, 1005000.0 ], [ 502500.0, 1002500.0 ], [ 505000.0, 1002500.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T06", "population": 3029 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 507500.0, 1002500.0 ], [ 507500.0, 1005000.0 ], [ 505000.0, 1005000.0 ], [ 505000.0, 1002500.0 ], [ 507500.0, 1002500.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T07", "population": 1428 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 510000.0, 1002500.0 ], [ 510000.0, 1005000.0 ], [ 507500.0, 1005000.0 ], [ 507500.0, 1002500.0 ], [ 510000.0, 1002500.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T08", "population": 3604 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 502500.0, 1005000.0 ], [ 502500.0, 1007500.0 ], [ 500000.0, 1007500.0 ], [ 500000.0, 1005000.0 ], [ 502500.0, 1005000.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T09", "population": 3088 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 505000.0, 1005000.0 ], [ 505000.0, 1007500.0 ], [ 502500.0, 1007500.0 ], [ 502500.0, 1005000.0 ], [ 505000.0, 1005000.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T10", "population": 1850 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 507500.0, 1005000.0 ], [ 507500.0, 1007500.0 ], [ 505000.0, 1007500.0 ], [ 505000.0, 1005000.0 ], [ 507500.0, 1005000.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T11", "population": 584 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 510000.0, 1005000.0 ], [ 510000.0, 1007500.0 ], [ 507500.0, 1007500.0 ], [ 507500.0, 1005000.0 ], [ 510000.0, 1005000.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T12", "population": 1156 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 502500.0, 1007500.0 ], [ 502500.0, 1010000.0 ], [ 500000.0, 1010000.0 ], [ 500000.0, 1007500.0 ], [ 502500.0, 1007500.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T13", "population": 508 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 505000.0, 1007500.0 ], [ 505000.0, 1010000.0 ], [ 502500.0, 1010000.0 ], [ 502500.0, 1007500.0 ], [ 505000.0, 1007500.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T14", "population": 445 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 507500.0, 1007500.0 ], [ 507500.0, 1010000.0 ], [ 505000.0, 1010000.0 ], [ 505000.0, 1007500.0 ], [ 507500.0, 1007500.0 ] ] ] } },
+{ "type": "Feature", "properties": { "tract_id": "T15", "population": 464 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 510000.0, 1007500.0 ], [ 510000.0, 1010000.0 ], [ 507500.0, 1010000.0 ], [ 507500.0, 1007500.0 ], [ 510000.0, 1007500.0 ] ] ] } }
+]
+}
