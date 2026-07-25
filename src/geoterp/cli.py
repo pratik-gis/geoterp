@@ -132,6 +132,11 @@ def _cmd_raster(args) -> int:
     elif args.method == "aggregate":
         grid = geoterp.aggregate(
             args.input, factor=args.factor, factor_y=args.factor_y, method=args.stat)
+    elif args.method == "fill":
+        grid = geoterp.fill_nodata(
+            args.input, method=args.fill_method,
+            max_search_distance=args.max_distance,
+            smoothing_iterations=args.smoothing, neighbors=args.neighbors)
     else:  # pragma: no cover
         raise SystemExit(f"unknown raster method {args.method!r}")
 
@@ -231,6 +236,16 @@ def build_parser() -> argparse.ArgumentParser:
     ag.add_argument("--stat", default="average",
                     choices=["average", "mean", "sum", "min", "max", "median", "mode"])
     ag.add_argument("-o", "--output", default=None)
+    fl = rssub.add_parser("fill", help="fill NoData/void holes by interpolation")
+    fl.add_argument("input")
+    fl.add_argument("--fill-method", dest="fill_method", default="idw",
+                    choices=["idw", "nearest", "linear", "cubic", "rbf", "laplace"])
+    fl.add_argument("--max-distance", dest="max_distance", type=float, default=100.0,
+                    help="(idw) max search distance in cells")
+    fl.add_argument("--smoothing", type=int, default=0,
+                    help="(idw) post-fill smoothing iterations")
+    fl.add_argument("--neighbors", type=int, default=16, help="(rbf) neighbours per cell")
+    fl.add_argument("-o", "--output", default=None)
     rs.set_defaults(func=_cmd_raster)
 
     # sample --------------------------------------------------------------

@@ -160,6 +160,38 @@ def raster(outdir):
     print("wrote", p)
 
 
+def fill(outdir):
+    from geoterp.core import RasterGrid
+
+    dem = ds.load_dem(resolution=90)
+    truth = dem.data.copy()
+    rng = np.random.default_rng(3)
+    holed = truth.copy()
+    holed[28:46, 30:52] = np.nan               # big void
+    idx = rng.choice(holed.size, size=500, replace=False)
+    holed.flat[idx] = np.nan                   # scattered dropouts
+    r = RasterGrid(holed, dem.spec)
+    filled = geoterp.fill_nodata(r, method="idw", smoothing_iterations=2)
+
+    vmin, vmax = np.nanmin(truth), np.nanmax(truth)
+    panels = [
+        ("DEM with voids (10% missing)", holed),
+        ("Filled — GDAL IDW", filled.data),
+        ("Original (reference)", truth),
+    ]
+    fig, axes = plt.subplots(1, 3, figsize=(12.5, 4.4))
+    for ax, (name, arr) in zip(axes, panels):
+        ax.imshow(arr, cmap="terrain", vmin=vmin, vmax=vmax)
+        _clean(ax, name)
+    fig.suptitle("Filling NoData holes in a DEM by interpolation",
+                 color=TEXT, fontsize=14)
+    fig.tight_layout(rect=(0, 0, 1, 0.94))
+    p = os.path.join(outdir, "geoterp-fill.png")
+    fig.savefig(p, dpi=125, bbox_inches="tight")
+    plt.close(fig)
+    print("wrote", p)
+
+
 def main():
     outdir = sys.argv[1] if len(sys.argv) > 1 else "examples/figures"
     os.makedirs(outdir, exist_ok=True)
@@ -169,6 +201,7 @@ def main():
     pycno(outdir)
     areal(outdir)
     raster(outdir)
+    fill(outdir)
 
 
 if __name__ == "__main__":

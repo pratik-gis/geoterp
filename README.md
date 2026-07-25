@@ -26,7 +26,7 @@ regression — `geoterp` implements it from scratch, carefully and with tests.
 | **Points → surface** (geostatistical) | Ordinary & Universal Kriging |
 | **Points → vector** | Thiessen / Voronoi polygons |
 | **Polygons → polygons** | Areal weighting · Dasymetric mapping · Pycnophylactic (Tobler) |
-| **Raster → raster** | Nearest · Bilinear · Cubic convolution · Cubic spline · Lanczos / sinc · Aggregation (mean, sum, min, max, median, mode) |
+| **Raster → raster** | Nearest · Bilinear · Cubic convolution · Cubic spline · Lanczos / sinc · Aggregation (mean, sum, min, max, median, mode) · **Void / NoData hole filling** |
 
 ---
 
@@ -135,6 +135,25 @@ geoterp.resample(dem, shape=(512, 512), method="cubic")
 geoterp.aggregate(dem, factor=4, method="average")     # or sum / min / max / median / mode
 ```
 
+### Filling voids / NoData holes
+
+DEMs and satellite rasters often arrive with holes — cloud gaps, water masks,
+sensor dropouts. `fill_nodata` closes them by interpolating from the surrounding
+valid cells, leaving the good data untouched.
+
+![Filling NoData holes in a DEM](docs/img/geoterp-fill.png)
+
+```python
+geoterp.fill_nodata(dem, method="idw")        # GDAL FillNodata (default, fast, robust)
+geoterp.fill_nodata(dem, method="cubic")      # scipy griddata: nearest / linear / cubic
+geoterp.fill_nodata(dem, method="rbf")        # thin-plate spline, smoothest for isolated voids
+geoterp.fill_nodata(dem, method="laplace")    # from-scratch diffusion inpaint (minimum-curvature)
+```
+
+Holes are any NaN cells (or cells equal to the file's NoData value on read).
+`idw` accepts `max_search_distance` and `smoothing_iterations`; `laplace` accepts
+`max_iter`/`tol`.
+
 ---
 
 ## Command line
@@ -159,6 +178,7 @@ geoterp polygon pycno      sample_data/source_zones.geojson --value population -
 # Raster → raster
 geoterp raster resample  sample_data/dem.tif --scale 2 --kernel lanczos -o dem_hi.tif
 geoterp raster aggregate sample_data/dem.tif --factor 4 --stat average -o dem_lo.tif
+geoterp raster fill      sample_data/dem.tif --fill-method idw -o dem_filled.tif
 ```
 
 Run `geoterp --help` or `geoterp point --help` for the full option list.
@@ -204,7 +224,7 @@ all to disk as GeoJSON / CSV / GeoTIFF. A pre-generated copy also lives in
 
 ```bash
 pip install -e ".[dev]"
-pytest                          # 67 tests: invariants, edge cases, CLI end-to-end
+pytest                          # 86 tests: invariants, edge cases, CLI end-to-end
 python examples/make_blog_figures.py docs/img   # regenerate the figures
 ```
 

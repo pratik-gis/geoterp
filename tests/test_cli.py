@@ -84,6 +84,24 @@ def test_cli_raster_aggregate(sample_dir, tmp_path):
     assert os.path.exists(out)
 
 
+def test_cli_raster_fill(sample_dir, tmp_path):
+    # Punch a hole into the sample DEM, write it, then fill via the CLI.
+    import numpy as np
+
+    from geoterp.io import read_raster
+
+    dem = read_raster(str(sample_dir / "dem.tif"))
+    dem.data[10:20, 10:20] = np.nan
+    holed = str(tmp_path / "holed.tif")
+    dem.to_geotiff(holed)
+
+    out = str(tmp_path / "filled.tif")
+    rc = main(["raster", "fill", holed, "--fill-method", "idw", "-o", out])
+    assert rc == 0
+    g = read_raster(out)
+    assert np.isfinite(g.data).all()
+
+
 def test_cli_bad_value_column_returns_error(sample_dir, tmp_path):
     rc = main(["point", "idw", str(sample_dir / "stations.geojson"),
                "--value", "does_not_exist", "-o", str(tmp_path / "x.tif")])

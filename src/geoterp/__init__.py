@@ -11,7 +11,7 @@ Points → surface
 Polygons → polygons
     :func:`areal_weighting`, :func:`dasymetric`, :func:`pycnophylactic`.
 Raster → raster
-    :func:`resample`, :func:`aggregate`.
+    :func:`resample`, :func:`aggregate`, :func:`fill_nodata` (void filling).
 
 Every point/raster method returns a :class:`RasterGrid`; polygon methods return
 GeoDataFrames.  See the :mod:`geoterp.datasets` module for ready-made sample
@@ -37,7 +37,7 @@ from .polygon import (
     pycnophylactic,
     pycnophylactic_to_polygons,
 )
-from .raster import aggregate, resample
+from .raster import aggregate, fill_nodata, resample
 
 __version__ = "0.1.0"
 
@@ -62,4 +62,5 @@ __all__ = [
     # raster
     "resample",
     "aggregate",
+    "fill_nodata",
 ]
